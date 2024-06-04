@@ -1,6 +1,6 @@
 # Next.js 14 Tutorial (TypeScript)
 
-> By Codevolution Data Fetching section topics 62 -
+> By Codevolution Data Fetching section topics 62 - 68
 
 ## Built With
 
