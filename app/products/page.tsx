@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 
-export const fetchCache = 'default-cache';
+// export const fetchCache = 'default-cache';
+// export const revalidate = 10;
 
 type Product = {
   id: number;
@@ -10,15 +11,17 @@ type Product = {
 };
 
 export default async function ProductsPage() {
-  const productsResponse = await fetch('http://localhost:3001/products');
+  const productsResponse = await fetch('http://localhost:3001/products', {
+    next: { revalidate: 10 },
+  });
   const products = await productsResponse.json();
 
-  const cookieStore = cookies();
-  const theme = cookieStore.get('theme');
+  // const cookieStore = cookies();
+  // const theme = cookieStore.get('theme');
   // console.log({ theme });
 
-  const detailsResponse = await fetch('http://localhost:3001/products/1');
-  const details = await detailsResponse.json();
+  // const detailsResponse = await fetch('http://localhost:3001/products/1');
+  // const details = await detailsResponse.json();
   return (
     <ul className="space-y-4 p-4">
       {products.map((product: Product) => (
@@ -29,7 +32,7 @@ export default async function ProductsPage() {
           <h2 className="text-xl font-semibold">{product.title}</h2>
           <p>{product.description}</p>
           <p className="text-lg font-medium">${product.price}</p>
-          <p>{details.price}</p>
+          {/* <p>{details.price}</p> */}
         </li>
       ))}
     </ul>
